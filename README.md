@@ -58,18 +58,6 @@ python main.py --config configs/abide1.yaml --mode eval --ckpt runs/abide1/best.
 Replace `abide1` with `abide2`, `adhd200`, or `oasis` for the other
 cohorts. Reported metrics: ACC, SEN, SPE.
 
-## Citation
-
-```bibtex
-@article{mosaic2026,
-  title   = {Interpretable Stability-Aware Multimodal Connectome Learning
-             With Structure-Anchored Fusion for Brain Disorder Diagnosis},
-  author  = {Anonymous},
-  journal = {Medical Image Analysis},
-  year    = {2026}
-}
-```
-
 ## License
 
 MIT.
