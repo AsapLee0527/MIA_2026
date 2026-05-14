@@ -1,0 +1,56 @@
+# MOSAIC config: OASIS-3 (DK68)
+data_root: data/oasis
+atlas: dk68
+n_rois: 68
+n_classes: 2
+
+modalities: [FC, SC, EC]    # DK68 multimodal tensor package
+
+batch_size: 16
+epochs: 200
+lr: 1.0e-4
+weight_decay: 1.0e-4
+n_folds: 5
+num_workers: 4
+
+encoders:
+  fc:
+    type: transformer
+    hidden_dim: 192
+    n_layers: 2
+    n_heads: 4
+    dropout: 0.1
+  sc:
+    type: dht_hypergnn
+    hidden_dim: 192
+    n_layers: 2
+  ec:
+    type: signed_transformer
+    hidden_dim: 192
+    n_layers: 2
+    n_heads: 4
+    dropout: 0.1
+
+fusion:
+  variant: sc_anchor
+  hidden_dim: 192
+  attn_heads: 4
+
+rl:
+  group_size: 4
+  mask_target_ratio: 0.20
+  lambda_logit: 0.5
+  lambda_mask: 0.5
+  lambda_pol: 1.0
+  lambda_cmp: 0.1
+  lambda_ent: 1.0e-3
+
+perturbation:
+  enabled: true
+  edge_dropout: 0.10
+  weight_jitter: 0.05
+
+ablation:
+  mask_variant: null
+
+out_dir: runs/oasis

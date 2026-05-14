@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Logs / checkpoints / runs
+*.log
+runs/
+logs/
+checkpoints/
+ckpt/
+*.pt
+*.pth
+*.ckpt
+wandb/
+
+# Data (keep code-only repo)
+data/
+datasets_raw/
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.mat
+*.csv
+*.tsv
+
+# Misc
+.cache/
+.ipynb_checkpoints/

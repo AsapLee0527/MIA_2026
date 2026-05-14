@@ -1,0 +1,63 @@
+# MOSAIC config: ABIDE-I (Schaefer100 x 7-network)
+data_root: data/abide1
+atlas: schaefer100x7        # number of ROIs = 100
+n_rois: 100
+n_classes: 2
+
+modalities: [FC, SC, EC]    # FC, SC (MIND morphometric), EC (regularized VAR(1))
+
+# ----------------------- Optimization -----------------------
+batch_size: 16
+epochs: 200
+lr: 1.0e-4
+weight_decay: 1.0e-4
+n_folds: 5
+num_workers: 4
+
+# ----------------------- Encoders ---------------------------
+encoders:
+  fc:
+    type: transformer
+    hidden_dim: 256
+    n_layers: 2
+    n_heads: 4
+    dropout: 0.1
+  sc:
+    type: dht_hypergnn
+    hidden_dim: 256
+    n_layers: 2
+  ec:
+    type: signed_transformer
+    hidden_dim: 256
+    n_layers: 2
+    n_heads: 4
+    dropout: 0.1
+
+# ----------------------- Fusion -----------------------------
+fusion:
+  variant: sc_anchor        # {sc_anchor, concat, gated, bidir, reverse,
+                            #  sc2fc_only, sc2ec_only, shared}
+  hidden_dim: 256
+  attn_heads: 4
+
+# ----------------------- RL mask policy ---------------------
+rl:
+  group_size: 4             # G; set to 1 for single-sample REINFORCE
+  mask_target_ratio: 0.20   # best ratio in Fig. 4 of paper
+  lambda_logit: 0.5
+  lambda_mask: 0.5
+  lambda_pol: 1.0           # policy gradient weight
+  lambda_cmp: 0.1           # compactness
+  lambda_ent: 1.0e-3        # entropy bonus
+
+# ----------------------- Perturbation -----------------------
+perturbation:
+  enabled: true
+  edge_dropout: 0.10
+  weight_jitter: 0.05
+
+# ----------------------- Ablation switches ------------------
+ablation:
+  mask_variant: null        # {no_pert, G1, stgumbel, topk, softgate, l1}
+
+out_dir: runs/abide1
