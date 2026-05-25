@@ -1,9 +1,9 @@
-"""MOSAIC model package.
+"""Model package.
 
 Public API:
-    MOSAIC          — top-level multimodal connectome model
+    Model           — top-level multimodal connectome model
 """
 
-from .mosaic import MOSAIC
+from .model import Model
 
-__all__ = ["MOSAIC"]
+__all__ = ["Model"]

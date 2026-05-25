@@ -1,4 +1,4 @@
-# MOSAIC config: OASIS-3 (DK68)
+# Config: OASIS-3 (DK68)
 data_root: data/oasis
 atlas: dk68
 n_rois: 68

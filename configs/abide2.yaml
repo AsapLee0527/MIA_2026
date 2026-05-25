@@ -1,4 +1,4 @@
-# MOSAIC config: ABIDE-II (Schaefer100 x 7-network)
+# Config: ABIDE-II (Schaefer100 x 7-network)
 data_root: data/abide2
 atlas: schaefer100x7
 n_rois: 100

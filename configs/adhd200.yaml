@@ -1,4 +1,4 @@
-# MOSAIC config: ADHD-200 (AAL116)
+# Config: ADHD-200 (AAL116)
 data_root: data/adhd200
 atlas: aal116
 n_rois: 116

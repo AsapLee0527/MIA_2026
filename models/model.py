@@ -1,11 +1,12 @@
-"""MOSAIC: Multimodal cOnnectome learning with Stability-Aware
-modaliIty-specific masking and Cross-modal SC-anchored fusion.
+"""Reference implementation: structure-anchored multimodal connectome
+learning with reinforced masking for brain disorder diagnosis.
 
 This single file contains the four building blocks described in
 Section 2 of the paper:
 
   1. Modality-specific Bernoulli mask policy (Sec. 2.3)
-  2. Stability-aware grouped REINFORCE optimization (Sec. 2.4)
+  2. Group-relative REINFORCE optimization with stability-aware
+     consistency regularization (Sec. 2.4)
   3. Topology-matched encoders for FC / SC / EC (Sec. 2.5)
        - FC: Transformer
        - SC: DHT-based HyperGNN (lightweight ROI-aggregating variant)
@@ -15,7 +16,7 @@ Section 2 of the paper:
 The implementation is intentionally self-contained and modest in size so
 that reviewers and downstream users can read the model end-to-end without
 chasing across many files. Hyperparameters are read from the YAML config
-passed to the top-level ``MOSAIC`` constructor.
+passed to the top-level ``Model`` constructor.
 """
 
 from __future__ import annotations
@@ -236,10 +237,10 @@ class SCAnchoredFusion(nn.Module):
 
 
 # =============================================================================
-# 4. Top-level MOSAIC model
+# 4. Top-level model
 # =============================================================================
-class MOSAIC(nn.Module):
-    """End-to-end MOSAIC pipeline: mask policy + encoders + fusion."""
+class Model(nn.Module):
+    """End-to-end pipeline: mask policy + encoders + SC-anchored fusion."""
 
     def __init__(self, cfg: dict) -> None:
         super().__init__()

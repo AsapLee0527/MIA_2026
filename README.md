@@ -1,13 +1,15 @@
-# MOSAIC
+## Structure-Anchored Multimodal Connectome Learning with Reinforced Masking
 
 Official PyTorch implementation of:
 
-> **Interpretable Stability-Aware Multimodal Connectome Learning With Structure-Anchored Fusion for Brain Disorder Diagnosis**
+> **Structure-Anchored Multimodal Connectome Learning with Reinforced
+> Masking for Brain Disorder Diagnosis**
 
-MOSAIC jointly models functional (FC), structural (SC) and effective (EC)
-connectivity with (i) stability-aware grouped RL for subnetwork mask
-discovery, (ii) topology-matched encoders (Transformer / DHT-HyperGNN /
-signed Transformer), and (iii) SC-anchored hierarchical fusion.
+This codebase jointly models functional (FC), structural (SC) and effective
+(EC) connectivity with (i) group-relative reinforcement learning for
+modality-specific subnetwork mask discovery, (ii) topology-matched
+encoders (Transformer / DHT-HyperGNN / direction-aware Transformer), and
+(iii) SC-anchored hierarchical fusion.
 
 ## Repository layout
 
@@ -15,7 +17,7 @@ signed Transformer), and (iii) SC-anchored hierarchical fusion.
 code/
 ├── configs/        # YAML config per dataset
 ├── datasets/       # Dataset adapters
-├── models/mosaic.py  # Mask policy + encoders + SC-anchored fusion
+├── models/model.py # Mask policy + encoders + SC-anchored fusion
 ├── main.py         # Train / eval entry point
 └── README.md
 ```
@@ -23,8 +25,8 @@ code/
 ## Installation
 
 ```bash
-conda create -n mosaic python=3.10 -y
-conda activate mosaic
+conda create -n connectome python=3.10 -y
+conda activate connectome
 pip install torch>=2.1 numpy pyyaml scikit-learn
 ```
 

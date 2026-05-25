@@ -1,4 +1,4 @@
-"""Dataset adapters for MOSAIC."""
+"""Dataset adapters for the connectome modeling pipeline."""
 
 from .connectome_dataset import ConnectomeDataset, group_stratified_kfold
 

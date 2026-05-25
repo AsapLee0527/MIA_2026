@@ -1,4 +1,4 @@
-"""MOSAIC training / evaluation entry point.
+"""Training / evaluation entry point.
 
 Self-contained: perturbation operator, loss aggregation, and ACC/SEN/SPE
 metrics are inlined in this file so the project only depends on
@@ -31,14 +31,14 @@ import yaml
 from torch.utils.data import DataLoader
 
 from datasets.connectome_dataset import ConnectomeDataset, group_stratified_kfold
-from models.mosaic import MOSAIC
+from models.model import Model
 
 
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="MOSAIC training / evaluation")
+    p = argparse.ArgumentParser(description="Training / evaluation")
     p.add_argument("--config", type=str, required=True,
                    help="Path to YAML configuration file.")
     p.add_argument("--mode", choices=["train", "eval"], default="train")
@@ -189,7 +189,7 @@ def run_one_fold(cfg: dict, fold_idx: int, train_idx, val_idx,
     val_loader = DataLoader(val_set, batch_size=cfg["batch_size"],
                             shuffle=False, num_workers=cfg.get("num_workers", 2))
 
-    model = MOSAIC(cfg).to(device)
+    model = Model(cfg).to(device)
     optim = torch.optim.AdamW(model.parameters(),
                               lr=cfg["lr"], weight_decay=cfg["weight_decay"])
     perturb = ModalityPerturbation(
@@ -274,7 +274,7 @@ def main() -> None:
 
     else:  # eval
         assert args.ckpt is not None, "--ckpt is required when --mode eval"
-        model = MOSAIC(cfg).to(device)
+        model = Model(cfg).to(device)
         model.load_state_dict(torch.load(args.ckpt, map_location=device))
         loader = DataLoader(dataset, batch_size=cfg["batch_size"],
                             shuffle=False, num_workers=cfg.get("num_workers", 2))
