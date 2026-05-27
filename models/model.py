@@ -1,5 +1,5 @@
 """Reference implementation: structure-anchored multimodal connectome
-learning with reinforced masking for brain disorder diagnosis.
+learning with reinforced masking for brain disorder detection.
 
 This single file contains the four building blocks described in
 Section 2 of the paper:

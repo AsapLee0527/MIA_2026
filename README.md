@@ -3,7 +3,7 @@
 Official PyTorch implementation of:
 
 > **Structure-Anchored Multimodal Connectome Learning with Reinforced
-> Masking for Brain Disorder Diagnosis**
+> Masking for Brain Disorder Detection**
 
 This codebase jointly models functional (FC), structural (SC) and effective
 (EC) connectivity with (i) group-relative reinforcement learning for
